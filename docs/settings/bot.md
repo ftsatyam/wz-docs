@@ -391,7 +391,21 @@ WEB_ACCESS_PASSWORD = "mysecretkey"
 
 ### 1.3 — Hyper TG Downloader
 
-#### 25. `HELPER_TOKENS`
+#### 25. `USE_HYPER`
+
+**What:** Enable or disable the Hyper Downloader / Hyper Uploader system. When ON, the bot uses parallel connections for much faster Telegram file transfers.
+
+```python
+USE_HYPER = True
+```
+
+**If `True`:** Faster downloads and uploads from Telegram (recommended).
+
+**If `False`:** Falls back to standard single-threaded transfer.
+
+---
+
+#### 26. `HELPER_TOKENS`
 
 **What:** Extra bot tokens (from @BotFather) for handling tasks in parallel. Each extra bot can work on its own task.
 
@@ -891,6 +905,30 @@ INDEX_URL = "https://example-workers.example.workers.dev/0:/"
 
 ---
 
+#### 75b. `DRIVE_CATEGORY_MODE`
+
+**What:** Enable categories for Google Drive uploads. Users can organize uploads into different folders by content type (Movies, TV, Music, etc.).
+
+```python
+DRIVE_CATEGORY_MODE = False
+```
+
+**If `True`:** Users can select a category before uploading. Categories are set up via `categories.txt` in Private Files or user drive categories in `/userset`.
+
+---
+
+#### 75c. `DRIVE_CATEGORY_SA`
+
+**What:** Service account to use specifically for drive category uploads.
+
+```python
+DRIVE_CATEGORY_SA = ""
+```
+
+**If empty:** Uses the default service account or token.pickle.
+
+---
+
 ### 1.16 — YouTube Tools
 
 #### 76. `YT_DESP`
@@ -1141,6 +1179,22 @@ UPDATE_PKGS = True
 
 ---
 
+### 1.20b — Telemetry
+
+#### 92b. `ENABLE_TELEMETRY`
+
+**What:** Whether the bot sends crash reports to a remote server. This helps developers fix bugs faster.
+
+```python
+ENABLE_TELEMETRY = True
+```
+
+**If `True`:** Crash traces are sent to a remote worker. No personal data is collected.
+
+**If `False`:** No data is sent. Crashes are silent.
+
+---
+
 ### 1.21 — Leech Settings (Telegram upload)
 
 #### 93. `LEECH_SPLIT_SIZE`
@@ -1355,6 +1409,33 @@ TORRENT_TIMEOUT = 3600  # 1 hour
 
 ---
 
+#### 107b. `CPU_LIMIT`
+
+**What:** Maximum CPU usage for background services like FFmpeg and file processing.
+
+```python
+CPU_LIMIT = 20
+```
+
+**If `20`:** Services use at most 20% CPU. Increase for faster processing on powerful servers.
+
+---
+
+#### 107c. `THROTTLE_SERVICES`
+
+**What:** Whether to pause background services during heavy download/upload operations.
+
+| Value | Behavior |
+|---|---|
+| `"auto"` | Pause services when CPU or disk usage is high |
+| `"off"` | Never pause services |
+
+```python
+THROTTLE_SERVICES = "auto"
+```
+
+---
+
 #### 108. `BASE_URL`
 
 **What:** Your server's public URL for the web file-selection UI (choose which files to download from a torrent).
@@ -1553,6 +1634,18 @@ GOFILE_FOLDER_ID = "your-folder-id"
 
 ---
 
+#### 123b. `GOFILE_AUTO_CREATE_FOLDER`
+
+**What:** Whether to automatically create a new folder for each upload on Gofile.
+
+```python
+GOFILE_AUTO_CREATE_FOLDER = False
+```
+
+**If `True`:** Each upload gets its own folder. Helps keep files organized.
+
+---
+
 #### 124. `PIXELDRAIN_KEY`
 
 **What:** PixelDrain API key.
@@ -1714,7 +1807,7 @@ DOWNLOAD_DIR = "/usr/src/app/downloads"
 These are the same as the DISABLE_* variables in Section 1 (numbers 29–34, 28). In `/botset`, they appear as easy toggle buttons.
 
 | Toggle | What it turns OFF |
-|---|---|
+|---|---|---|
 | **Torrents** | All torrent downloads |
 | **Leech** | All Telegram uploads |
 | **Bulk** | Zip/unzip operations |
@@ -1722,6 +1815,11 @@ These are the same as the DISABLE_* variables in Section 1 (numbers 29–34, 28)
 | **Seed** | Torrent seeding after download |
 | **FF Mode** | FFmpeg processing |
 | **Mega** | Mega.nz downloads |
+| **JD** | JDownloader downloads |
+| **NZB** | SABnzbd / Usenet downloads |
+| **RSS** | RSS feed monitoring |
+| **Search** | Torrent search |
+| **YT-DLP** | yt-dlp downloads (YouTube, social media) |
 
 **How to use:** Tap the toggle. Green checkmark = ON (feature is off). Red = OFF (feature is on). Yes, it's backwards — ON means the DISABLE is active.
 

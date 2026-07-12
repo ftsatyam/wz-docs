@@ -57,6 +57,16 @@ python3 gen_scripts/gen_sa_accounts/script.py
 
 3. Upload the `accounts.zip` via `/botset` → Private Files
 
+### Drive Categories
+
+Organize uploads into different Google Drive folders based on content type:
+
+```python
+DRIVE_CATEGORY_MODE = True
+```
+
+When enabled, users can pick a category (Movies, TV, Music, etc.) before uploading. Set up categories via `categories.txt` in Private Files or per-user drive categories in `/userset`.
+
 ### Stopping duplicates
 
 ```python
@@ -131,8 +141,7 @@ Key settings:
 ```python
 AS_DOCUMENT = False          # True = all files as documents
 LEECH_SPLIT_SIZE = 0         # split size (0 = max allowed)
-USER_TRANSMISSION = True     # use user account for downloads
-HYBRID_LEECH = True          # mix bot + user for speed
+TRANSMISSION_MODE = "both"   # "both", "bot", or "user"
 ```
 
 ---
@@ -160,7 +169,7 @@ Supported servers (set API keys in config):
 
 | Server | Config variable |
 |---|---|
-| Gofile.io | `GOFILE_API`, `GOFILE_FOLDER_ID` |
+| Gofile.io | `GOFILE_API`, `GOFILE_FOLDER_ID`, `GOFILE_AUTO_CREATE_FOLDER` |
 | Streamtape | (built-in) |
 | StreamWish | `STREAMWISH_API` |
 | FileLion | `FILELION_API` |
@@ -169,6 +178,14 @@ Supported servers (set API keys in config):
 | DevUploads | `DEVUPLOADS_KEY`, `DEVUPLOADS_FOLDER` |
 | VikingFile | `VIKINGFILE_HASH`, `VIKINGFILE_FOLDER` |
 | ProtectedFiles | `PROTECTED_API` |
+
+---
+
+---
+
+## YouTube (Beta)
+
+Upload videos directly to your YouTube channel. See the [YouTube Upload guide](/advanced/youtube-upload) for setup and configuration.
 
 ---
 

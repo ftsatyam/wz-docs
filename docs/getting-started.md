@@ -1,7 +1,7 @@
 
 # What is WZML-X?
 
-Think of WZML-X as your **personal file-butler bot on Telegram**. You send it a link, and it will grab the file and put it wherever you want — Google Drive, your computer (via Rclone), or send it right back to you on Telegram.
+Think of WZML-X as your **personal file-butler bot on Telegram**. You send it a link, and it grabs the file and puts it wherever you want — Google Drive, your cloud storage, or right back to you on Telegram.
 
 ## What can it do?
 
@@ -35,25 +35,14 @@ Before you begin, get these ready:
 | **MongoDB URL** | A database to store settings | [MongoDB Atlas](https://www.mongodb.com/atlas) (free tier works) |
 | **Your Telegram User ID** | To identify you as the owner | [@userinfobot](https://t.me/userinfobot) |
 
-> **Don't have a server?** You can use free tiers from Oracle Cloud, Google Cloud Run, or Railway. But a cheap VPS ($5/month) is easiest.
+> **Don't have a server?** A cheap VPS ($5-6/month) works fine. DigitalOcean, Hetzner, and Vultr all have good options.
 
-## Step-by-step setup checklist
+## What would you like to do?
 
-| # | Step | Details |
-|---|------|---------|
-| 1 | Get a server | VPS (recommended), Heroku, or Colab |
-| 2 | Install Docker | `curl -fsSL https://get.docker.com \| sh` |
-| 3 | Create a bot | Use [@BotFather](https://t.me/BotFather) to get a `BOT_TOKEN` |
-| 4 | Get API credentials | Visit [my.telegram.org](https://my.telegram.org/apps) for `TELEGRAM_API` and `TELEGRAM_HASH` |
-| 5 | Get your User ID | Send `/start` to [@userinfobot](https://t.me/userinfobot) |
-| 6 | Set up MongoDB | Create a free cluster at [MongoDB Atlas](https://www.mongodb.com/atlas) and get `DATABASE_URL` |
-| 7 | Clone the repo | `git clone -b wzv3 https://github.com/SilentDemonSD/WZML-X` |
-| 8 | Copy config | `cp config_sample.py config.py` and fill in the 5 required values |
-| 9 | Start the bot | `docker compose up -d` |
-| 10 | Configure it | Use `/bsetting` to upload private files and change settings |
-
-**Not sure how to get any of these?** Each step is explained in the [Deployment](/deployment/) guide.
-
-## Ready?
-
-Jump to [Deployment](/deployment/) to get the bot running, or [Configuration](/configuration) to learn what each setting does.
+| If you want to... | Go here |
+|---|---|
+| Get the bot running in 10 minutes | [Quick Start](/quick-start) |
+| Deploy on a VPS with Docker | [Deployment Guide](/deployment/) |
+| Deploy on Heroku | [Heroku Guide](/deployment/heroku) |
+| Learn every setting | [Configuration](/configuration) |
+| See all the things the bot can do | [How To section](/how-to/leech) |

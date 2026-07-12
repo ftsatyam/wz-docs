@@ -159,7 +159,12 @@ Once both are set, the bot uses YOUR Mega account for downloads.
 
 ### 2e. Drive Category Toggle
 
-If the bot owner has enabled Drive Category Mode globally, you'll see a **Drive Cat: ON/OFF** button. Toggle it to enable/disable your personal drive categories.
+If the bot owner has enabled `DRIVE_CATEGORY_MODE` globally, you'll see a **Drive Cat: ON/OFF** button. Toggle it to enable/disable your personal drive categories.
+
+When enabled, you can use different Google Drive folders for different content types. Set up your categories under **GDrive Tools → User Drive Categories** using the format:
+```
+{"Movies": "drive_id|index_link", "TV": "drive_id"}
+```
 
 ---
 
@@ -271,6 +276,8 @@ First, click **Change Destination ⇋** to pick which service to use. Then click
 **Gofile Token:** Your Gofile.io API token. Click → send token.
 
 **Gofile Folder ID:** Your Gofile folder ID. Click → send ID. Leave empty to upload to root.
+
+**Gofile Auto Folder:** When ON, the bot creates a new folder inside your Gofile account for each upload. Click to toggle.
 
 ### 4b. BuzzHeavier Tools
 

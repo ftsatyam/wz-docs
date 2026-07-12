@@ -50,9 +50,11 @@ After editing, restart: `docker compose restart`
 | `RCLONE_FLAGS` | Extra Rclone flags (`"key:value\|key"`) | `""` |
 | `SHOW_CLOUD_LINK` | Show cloud link button on leeched files | `True` |
 | `RCLONE_SERVE_URL` | Public URL for Rclone serve | `""` |
-| `RCLONE_SERVE_PORT` | Port for Rclone serve | `0` |
+| `RCLONE_SERVE_PORT` | Port for Rclone serve | `8081` |
 | `RCLONE_SERVE_USER` | Username for Rclone serve auth | `""` |
 | `RCLONE_SERVE_PASS` | Password for Rclone serve auth | `""` |
+| `DRIVE_CATEGORY_MODE` | Enable GDrive categories for organizing uploads | `False` |
+| `DRIVE_CATEGORY_SA` | Service account to use for drive category uploads | `""` |
 
 ---
 
@@ -64,8 +66,7 @@ After editing, restart: `docker compose restart`
 | `AS_DOCUMENT` | Upload all files as documents (not media) | `False` |
 | `EQUAL_SPLITS` | Split into equal-sized parts | `False` |
 | `MEDIA_GROUP` | Group split parts as a media album | `False` |
-| `USER_TRANSMISSION` | Use user account for leech tasks | `True` |
-| `HYBRID_LEECH` | Use bot + user for faster leeching | `True` |
+| `TRANSMISSION_MODE` | Who sends leeched files: `"both"`, `"bot"`, or `"user"` | `"both"` |
 | `LEECH_PREFIX` | Text added before filename | `""` |
 | `LEECH_SUFFIX` | Text added after filename | `""` |
 | `LEECH_FONT` | Font style: `"b"`, `"i"`, `"u"`, `"s"`, `"code"`, `"spoiler"` | `""` |
@@ -163,6 +164,11 @@ Set `True` to **disable** a feature:
 | `DISABLE_SEED` | Seeding after torrent download |
 | `DISABLE_FF_MODE` | FFmpeg processing |
 | `DISABLE_MEGA` | Mega downloads |
+| `DISABLE_JD` | JDownloader downloads |
+| `DISABLE_NZB` | SABnzbd / Usenet downloads |
+| `DISABLE_RSS` | RSS feed monitoring |
+| `DISABLE_SEARCH` | Torrent search |
+| `DISABLE_YTDLP` | yt-dlp downloads (YouTube, social media) |
 
 ---
 
@@ -173,6 +179,8 @@ Set `True` to **disable** a feature:
 | Variable | What it does | Default |
 |---|---|---|
 | `TORRENT_TIMEOUT` | Dead torrent timeout (seconds) | `0` (disabled) |
+| `CPU_LIMIT` | CPU limit for background services | `20` |
+| `THROTTLE_SERVICES` | Pause services during heavy operations: `"auto"` or `"off"` | `"auto"` |
 
 > `BASE_URL` and `WEB_PINCODE` are documented under [Web UI](#web-ui) above.
 
@@ -223,6 +231,7 @@ Set `True` to **disable** a feature:
 | `DEBRID_LINK_API` | Debrid-Link API key |
 | `GOFILE_API` | Gofile.io API token |
 | `GOFILE_FOLDER_ID` | Gofile.io folder ID |
+| `GOFILE_AUTO_CREATE_FOLDER` | Auto-create a new folder per upload on Gofile | `False` |
 | `PIXELDRAIN_KEY` | PixelDrain API key |
 | `PROTECTED_API` | ProtectedFiles API key |
 | `BUZZHEAVIER_API` | BuzzHeavier API key |
@@ -281,6 +290,8 @@ Set `True` to **disable** a feature:
 
 | Variable | What it does | Default |
 |---|---|---|
+| `USE_HYPER` | Enable Hyper DL/UP for faster Telegram transfers | `True` |
+| `ENABLE_TELEMETRY` | Send crash reports to remote worker for debugging | `True` |
 | `HELPER_TOKENS` | Additional bot tokens for parallel task handling | `""` |
 | `USER_SESSION_STRING` | Pyrogram session string for user account tasks | `""` |
 | `HYPER_THREADS` | Number of parallel download parts | `0` (auto) |

@@ -78,10 +78,10 @@ If enabled, split parts are sent as a media album (nice for videos/photos).
 Three ways to leech:
 
 | Mode | Flag | How it works |
-|---|---|---|
-| **Bot** (default) | `-bt` | Bot sends the files. Simple, works for most. |
+|---|---|---|---|
+| **Bot** | `-bt` | Bot sends the files. Simple, works for most. |
 | **User** | `-ut` | Your user account sends files. Needed for some private channel downloads. Requires `USER_SESSION_STRING`. |
-| **Hybrid** | `-hl` | Small files by bot, large files by user (best of both). |
+| **Hybrid** (default) | `-hl` | Small files by bot, large files by user (best of both). |
 
 ```bash
 /leech link -bt   # force bot

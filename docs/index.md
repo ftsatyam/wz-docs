@@ -2,34 +2,36 @@
 layout: home
 
 hero:
-  name: "WZML-X"
-  text: "Telegram Mirror & Leech Bot"
-  tagline: A powerful Telegram bot that can mirror files from the internet to Google Drive, Rclone, or directly to Telegram. Supports torrents, direct links, YouTube, and more.
+  name: WZML-X Docs
+  tagline: Complete beginner-friendly documentation for WZML-X — a Telegram mirroring and leeching bot
   image:
     src: /logo.svg
     alt: WZML-X
   actions:
     - theme: brand
-      text: Get Started
+      text: Quick Start
+      link: /quick-start
+    - theme: alt
+      text: What is WZML-X?
       link: /getting-started
-    - theme: alt
-      text: View Commands
-      link: /commands/
-    - theme: alt
-      text: GitHub
-      link: https://github.com/SilentDemonSD/WZML-X
 
 features:
-  - title: Multi-Source Downloads
-    details: Torrents (Aria2/qBittorrent), Direct Links, YouTube/Social Media, Mega, NZB, Telegram files
-  - title: Flexible Upload
-    details: Upload to Google Drive, Rclone remotes, Mega, DDL servers (Gofile, Streamtape), or leech directly to Telegram
-  - title: User-Friendly
-    details: Web UI for file selection, queue management, RSS feeds, media info, and per-user settings
-  - title: Docker-Powered
-    details: Deploy with Docker Compose in minutes. Built-in Cloudflare tunnel for web access
-  - title: Customizable
-    details: Themes, filename filters, FFmpeg processing, metadata editing, split sizes, and more
-  - title: Secure
-    details: Auth system, sudo users, blacklist, private mode, pincode-protected web UI
+  - title: Send files to Telegram
+    details: Download from any link and get the file right in your chat. No setup needed.
+    link: /how-to/leech
+  - title: Save to cloud storage
+    details: Upload to Google Drive, Rclone, Mega, or any cloud destination.
+    link: /how-to/mirror
+  - title: Download from YouTube
+    details: Videos, audio, playlists — from YouTube and 1000+ other sites.
+    link: /how-to/youtube
+  - title: Torrent support
+    details: Magnet links, .torrent files, file selection, and seeding.
+    link: /how-to/torrents
+  - title: RSS automation
+    details: Subscribe to feeds and auto-download new content.
+    link: /how-to/rss
+  - title: File processing
+    details: Extract, compress, convert, edit metadata, take screenshots.
+    link: /how-to/process
 ---
