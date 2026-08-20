@@ -16,14 +16,6 @@ export default defineConfig({
       { text: 'How To', link: '/how-to/leech' },
       { text: 'Reference', link: '/configuration' },
       { text: 'Help', link: '/faq' },
-      {
-        text: 'v3.1.8-x',
-        items: [
-          { text: 'Docs cover branch wzv3', link: 'https://github.com/SilentDemonSD/WZML-X/tree/wzv3' },
-          { text: 'Latest release notes', link: 'https://github.com/SilentDemonSD/WZML-X/releases/latest' },
-          { text: 'All releases', link: 'https://github.com/SilentDemonSD/WZML-X/releases' },
-        ],
-      },
     ],
     sidebar: [
       {
