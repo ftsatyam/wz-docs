@@ -134,7 +134,7 @@ This lets users browse and download files directly from your Rclone remotes via 
 
 ## Telegram (Leech)
 
-Leeching means uploading directly to Telegram. See the [Leeching guide](/leeching) for full details.
+Leeching means uploading directly to Telegram. See [Send a File to Telegram](/how-to/leech) for full details.
 
 Key settings:
 

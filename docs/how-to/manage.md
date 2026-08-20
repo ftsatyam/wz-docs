@@ -38,10 +38,15 @@ Shows CPU, RAM, disk space, uptime, total downloads, and more.
 
 ## Cancel a task
 
+Send `/status`. Every running task has a tap-to-cancel link under it that looks
+like `/c_gid123abc`. Tap it — that's the only way to cancel one task.
+
 ```
-/cancel gid123abc               # or /c gid123abc
-/cancel                          # or reply to a task message
+/c_gid123abc
 ```
+
+> Plain `/cancel` on its own does nothing. The bot only listens for the
+> `/c_<gid>` form, which is why `/status` prints it for you.
 
 Cancel everything at once:
 
@@ -63,6 +68,8 @@ If the queue is full and a task is waiting, skip the queue:
 /forcestart                      # or reply to a queued task
 ```
 
+This works on tasks that are **queued**, not ones already downloading.
+
 ---
 
 ## Select files from a torrent
@@ -70,9 +77,11 @@ If the queue is full and a task is waiting, skip the queue:
 Open the file selection menu for a torrent, NZB, or JDownloader task:
 
 ```
-/select gid123abc                # or /sel gid123abc
-/select                          # or reply to the task message
+/sel_gid123abc
 ```
+
+Like cancelling, `/status` prints this link for you — tap it. Plain `/select`
+does nothing on its own.
 
 ---
 

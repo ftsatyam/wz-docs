@@ -45,6 +45,10 @@ cp config_sample.py config.py
 nano config.py
 ```
 
+> **Do not skip the `cp` line.** If `config.py` doesn't exist when you start
+> Docker, Docker makes a *folder* named `config.py` and the bot crashes with a
+> confusing error.
+
 Find these 5 lines and fill them in:
 
 ```python
@@ -62,10 +66,10 @@ Save: `Ctrl+S` (or `Ctrl+O` then `Enter`). Exit: `Ctrl+X`.
 ## Step 5: Start the bot
 
 ```bash
-docker compose up -d
+docker compose up -d --build
 ```
 
-Wait 30 seconds. Check it's running:
+The first build takes 5-15 minutes. After that, starts take seconds. Check it's running:
 
 ```bash
 docker compose ps
@@ -107,6 +111,22 @@ The bot will send you a file called `100MB.bin`. Tap it to download.
 
 ---
 
+## Step 8: Two things that surprise everyone
+
+**1. JDownloader and Usenet are turned OFF.**
+They use a lot of RAM, so they start disabled. `/jdmirror` and `/nzbmirror` will
+refuse to run. To turn them on: send `/botset` → **Module Settings** → tap JD or NZB.
+
+Editing `config.py` will *not* work for these — the bot ignores `False` values in
+that file. Same for every other `False`/`0`/empty setting.
+
+**2. `/mirror` needs a cloud drive first.**
+`/leech` works out of the box because Telegram is already set up. `/mirror` has
+nowhere to put the file until you connect Google Drive or Rclone.
+See [Upload Destinations](/upload-destinations).
+
+---
+
 ## What happened?
 
 1. The bot downloaded the file from the internet
@@ -121,6 +141,8 @@ The bot is working.
 
 | You want to... | Go here |
 |---|---|
+| A one-page list of every command | [Cheat Sheet](/cheatsheet) |
+| To know what "leech", "seed", "rclone" mean | [Word List](/glossary) |
 | Save files to Google Drive instead of Telegram | [Set up a cloud drive](/upload-destinations#google-drive) |
 | Learn everything the bot can do | [How To section](/how-to/leech) |
 | Understand every config setting | [Configuration](/configuration) |

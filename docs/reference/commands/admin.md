@@ -18,13 +18,12 @@
 | `/log` | — | Get bot log file | Owner/Sudo |
 | `/exportsession` | — | Generate a Pyrogram string session | Owner/Sudo |
 | `/broadcast [msg]` | `/bc` | Send a message to all users | Owner only |
-| `/deletebroadcast [id]` | — | Remove a broadcast message | Owner only |
 | `/shell [cmd]` | — | Run a shell command | Owner only |
 | `/exec [code]` | — | Execute Python code | Owner only |
 | `/aexec [code]` | — | Execute async Python code | Owner only |
 | `/clearlocals` | — | Clear exec locals | Owner only |
-| `/plugins` | — | Plugin manager | Owner only |
-| `/speedtest` | — | Test internet speed | Owner/Sudo |
+| `/plugins` | — | Plugin manager (load/unload/enable plugins) | Owner only |
+| `/speedtest` | — | Test internet speed (**plugin** — only if loaded via `/plugins`) | Owner/Sudo |
 | `/addimage` | `/ai` | Add image to gallery | Owner/Sudo |
 | `/images` | `/img` | View/manage image gallery | Owner/Sudo |
 | `/gdclean` | `/gdc` | Clean Google Drive files | Owner/Sudo |

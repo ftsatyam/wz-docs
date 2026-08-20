@@ -146,6 +146,7 @@ After editing, restart: `docker compose restart`
 | `IMG_SEARCH` | Comma-separated keywords to auto-fetch wallpapers | `""` |
 | `IMG_PAGE` | Number of pages to search for images | `1` |
 | `IMG_SOURCES` | Image source sites: `["wallpaperflare"]` | `["wallpaperflare"]` |
+| `IMAGES` | The gallery itself. Don't edit by hand — use `/addimage` and `/images` | `[]` |
 | `IMDB_TEMPLATE` | HTML template for IMDB search results | (built-in) |
 | `COLORED_BTNS` | Use colored inline buttons | `False` |
 
@@ -155,20 +156,34 @@ After editing, restart: `docker compose restart`
 
 Set `True` to **disable** a feature:
 
-| Variable | What it disables |
-|---|---|
-| `DISABLE_TORRENTS` | All torrent downloads |
-| `DISABLE_LEECH` | All leech tasks |
-| `DISABLE_BULK` | Bulk (zip/unzip) operations |
-| `DISABLE_MULTI` | Multi-part splits |
-| `DISABLE_SEED` | Seeding after torrent download |
-| `DISABLE_FF_MODE` | FFmpeg processing |
-| `DISABLE_MEGA` | Mega downloads |
-| `DISABLE_JD` | JDownloader downloads |
-| `DISABLE_NZB` | SABnzbd / Usenet downloads |
-| `DISABLE_RSS` | RSS feed monitoring |
-| `DISABLE_SEARCH` | Torrent search |
-| `DISABLE_YTDLP` | yt-dlp downloads (YouTube, social media) |
+| Variable | What it disables | Default |
+|---|---|---|
+| `DISABLE_TORRENTS` | All torrent downloads | `False` |
+| `DISABLE_LEECH` | All leech tasks (`/leech`, `/qbleech`, ...) | `False` |
+| `DISABLE_MIRROR` | All mirror tasks (`/mirror`, `/qbmirror`, ...) | `False` |
+| `DISABLE_BULK` | The `-b` flag — many links from one message | `False` |
+| `DISABLE_MULTI` | The `-i` flag — multiple replied links | `False` |
+| `DISABLE_SEED` | The `-d` flag — seeding after torrent download | `False` |
+| `DISABLE_FF_MODE` | The `-ff` flag — FFmpeg processing | `False` |
+| `DISABLE_MEGA` | Mega.nz downloads | `False` |
+| `DISABLE_JD` | JDownloader downloads. Saves ~256–500MB RAM | **`True`** |
+| `DISABLE_NZB` | SABnzbd / Usenet downloads. Saves ~100–200MB RAM | **`True`** |
+| `DISABLE_RSS` | RSS feed monitoring | `False` |
+| `DISABLE_SEARCH` | Torrent search | `False` |
+| `DISABLE_YTDLP` | yt-dlp downloads (YouTube, social media) | `False` |
+
+::: warning JDownloader and Usenet are OFF out of the box
+`DISABLE_JD` and `DISABLE_NZB` start as `True`, and **writing
+`DISABLE_JD = False` in `config.py` will not turn them on** — the config loader
+skips any value that is empty, `0`, or `False`.
+
+To actually enable them, use one of:
+- `/botset` → **Module Settings** → toggle JD / NZB, or
+- an environment variable: `DISABLE_JD=false`
+
+Same trap applies to every `False` and `0` setting: writing the falsy value in
+`config.py` is the same as leaving the line out.
+:::
 
 ---
 
@@ -228,6 +243,7 @@ Set `True` to **disable** a feature:
 |---|---|
 | `FILELION_API` | FileLion API key |
 | `STREAMWISH_API` | StreamWish API key |
+| `ALLDEBRID_API_KEY` | AllDebrid API key. Powers the `-ad` flag on `/mirror` and `/leech` |
 | `DEBRID_LINK_API` | Debrid-Link API key |
 | `GOFILE_API` | Gofile.io API token |
 | `GOFILE_FOLDER_ID` | Gofile.io folder ID |
@@ -238,6 +254,7 @@ Set `True` to **disable** a feature:
 | `DEVUPLOADS_KEY` | DevUploads API key |
 | `DEVUPLOADS_FOLDER` | DevUploads folder ID |
 | `VIKINGFILE_HASH` | VikingFile.to hash |
+| `VIKINGFILE_FOLDER` | VikingFile folder name |
 | `VIKINGFILE_FOLDER` | VikingFile.to folder ID |
 | `INSTADL_API` | Instagram downloader API key |
 
@@ -270,7 +287,6 @@ Set `True` to **disable** a feature:
 | `MIRROR_LOG_ID` | Chat ID for mirror logs |
 | `LINKS_LOG_ID` | Chat ID for link logging |
 | `LEECH_DUMP_CHAT` | Chat ID where leeched files are dumped |
-| `CLEAN_LOG_MSG` | Auto-clean log messages | `False` |
 | `MEDIA_STORE` | Store media metadata for re-upload | `True` |
 | `DELETE_LINKS` | Auto-delete source links on task start | `False` |
 
@@ -282,7 +298,6 @@ Set `True` to **disable** a feature:
 |---|---|---|
 | `UPSTREAM_REPO` | Your GitHub fork URL for auto-updates | `""` |
 | `UPSTREAM_BRANCH` | Branch to track for updates | `"master"` |
-| `UPDATE_PKGS` | Update pip packages on restart | `True` |
 
 ---
 
@@ -292,11 +307,14 @@ Set `True` to **disable** a feature:
 |---|---|---|
 | `USE_HYPER` | Enable Hyper DL/UP for faster Telegram transfers | `True` |
 | `ENABLE_TELEMETRY` | Send crash reports to remote worker for debugging | `True` |
-| `HELPER_TOKENS` | Additional bot tokens for parallel task handling | `""` |
+| `HELPER_TOKENS` | Extra bot tokens for parallel Telegram transfers (space-separated) | `""` |
+| `HELPER_STRINGS` | Extra user session strings, paired with the helper bots | `""` |
+| `HELPER_BOT_PROXIES` | Proxies for the helper bot tokens | `""` |
+| `HELPER_USER_PROXIES` | Proxies for the helper user sessions | `""` |
 | `USER_SESSION_STRING` | Pyrogram session string for user account tasks | `""` |
 | `HYPER_THREADS` | Number of parallel download parts | `0` (auto) |
-| `HYPER_PIPELINE` | Concurrent GetFile requests per part | `32` |
-| `HYPER_CHUNK` | Download chunk size (bytes) | `262144` |
+| `HYPER_PIPELINE` | Concurrent GetFile requests per part | `4` |
+| `HYPER_CHUNK` | Download chunk size (bytes) | `524288` |
 | `TG_PROXY` | SOCKS5 proxy for Telegram: `{"scheme": "socks5", "hostname": "...", "port": 1234}` | `{}` |
 | `INC_TASK_NOTIFY` | Notify about incomplete tasks on restart | `False` |
 | `INC_TASK_RESUME` | Auto-resume incomplete tasks on restart | `False` |

@@ -1,10 +1,16 @@
 # Arguments Reference
 
-Add these after the link to customize how the bot handles your download.
+Arguments (also called "flags") are short options you stick on the **end** of a command
+to change what the bot does. They always start with a dash.
 
 ```
-/command link -arg1 -arg2 value
+/mirror https://example.com/file.zip -n newname.zip -e
+         ^ the link                   ^ flag  ^ flag
 ```
+
+You can stack as many as you want. Order doesn't matter.
+
+> New here? The [Cheat Sheet](/cheatsheet) covers the 8 flags most people ever need.
 
 ---
 
@@ -197,6 +203,32 @@ Use sync instead of copy for clone operations.
 /clone link -sync
 ```
 
+### `-ad` — AllDebrid
+Route the link (or magnet, or replied `.torrent`) through AllDebrid first. Unlocks
+premium hosts like 1fichier, rapidgator and mega, and downloads torrents from
+AllDebrid's servers instead of aria2/qBittorrent.
+```
+/mirror https://1fichier.com/?abc -ad
+/leech magnet:?xt=urn:btih:... -ad
+```
+Needs `ALLDEBRID_API_KEY` set. Without it the task fails with
+`ALLDEBRID_API_KEY is not configured`. Magnets give up after 3 minutes with no
+seeders, or 2 hours overall.
+
+### `-gc` — Google Drive category
+Upload into one of the named categories the owner set up (see `categories.txt` /
+`DRIVE_CATEGORY_MODE`).
+```
+/mirror link -gc Movies
+```
+
+### `-yt` — Upload to YouTube
+Send the finished video to YouTube instead of a normal destination.
+Needs YouTube credentials set up first — see [YouTube Upload](/advanced/youtube-upload).
+```
+/mirror link -yt
+```
+
 ---
 
 ## Compatibility Table
@@ -237,3 +269,6 @@ Use sync instead of copy for clone operations.
 | `-h` | Yes | Yes | No | No |
 | `-j` | Yes | Yes | No | No |
 | `-sync` | No | No | No | Yes |
+| `-ad` | Yes | Yes | No | No |
+| `-gc` | Yes | Yes | Yes | No |
+| `-yt` | Yes | Yes | No | No |

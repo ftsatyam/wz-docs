@@ -13,7 +13,7 @@ When you send `/botset` to the bot, you see 7 buttons:
 | Button | What you can do there |
 |---|---|
 | **Config Variables** | Change any setting from `config.py` |
-| **On/Off Settings** | Turn features on or off with one tap |
+| **Module Settings** | Turn features on or off with one tap |
 | **Private Files** | Upload or delete sensitive files (rclone.conf, token.pickle, etc.) |
 | **Qbit Settings** | Change qBittorrent options |
 | **Aria2c Settings** | Change Aria2 download options |
@@ -417,6 +417,33 @@ HELPER_TOKENS = "123:abc 456:def"
 
 ---
 
+#### 26b. `HELPER_STRINGS`
+
+**What:** Extra Pyrogram user session strings, space-separated. Paired with the
+helper bots so large files can be split across several user accounts too.
+
+```python
+HELPER_STRINGS = "session1 session2"
+```
+
+Generate them with `/exportsession`.
+
+---
+
+#### 26c. `HELPER_BOT_PROXIES` / `HELPER_USER_PROXIES`
+
+**What:** Proxies for the helper bot tokens and helper user sessions, in the same
+order as the tokens/strings above. Space-separated.
+
+```python
+HELPER_BOT_PROXIES = "socks5://host:port socks5://host2:port"
+HELPER_USER_PROXIES = "socks5://host3:port"
+```
+
+**If empty:** Helpers connect directly.
+
+---
+
 ### 1.4 — Mega.nz
 
 #### 26. `MEGA_EMAIL`
@@ -455,59 +482,144 @@ DISABLE_MEGA = False
 
 ### 1.5 — Disable Options (turn features OFF)
 
-These can also be toggled in **On/Off Settings** (Section 2 below). Here they are as config.py variables.
+These can also be toggled in **Module Settings** (Section 2 below). Here they are as config.py variables.
+
+::: warning Writing `False` here does nothing
+The config loader skips any value that is empty, `0`, or `False`. So a line like
+`DISABLE_JD = False` is treated exactly like leaving the line out — the built-in
+default wins.
+
+That matters most for `DISABLE_JD` and `DISABLE_NZB`, whose built-in default is
+**`True`**. To actually turn JDownloader or Usenet **on**, use `/botset` →
+**Module Settings**, or set an environment variable (`DISABLE_JD=false`).
+:::
 
 #### 29. `DISABLE_TORRENTS`
 
 ```python
-DISABLE_TORRENTS = False
+DISABLE_TORRENTS = True
 ```
-**If `True`:** All torrent downloads are blocked.
+**If `True`:** All torrent downloads are blocked. Default: `False`.
 
 ---
 
 #### 30. `DISABLE_LEECH`
 
 ```python
-DISABLE_LEECH = False
+DISABLE_LEECH = True
 ```
-**If `True`:** All Telegram uploads are blocked.
+**If `True`:** All leech commands are blocked — the user gets
+"The Leech command is currently disabled." Default: `False`.
 
 ---
 
-#### 31. `DISABLE_BULK`
+#### 31. `DISABLE_MIRROR`
 
 ```python
-DISABLE_BULK = False
+DISABLE_MIRROR = True
 ```
-**If `True`:** Zip/unzip (bulk) operations are blocked.
+**If `True`:** All mirror commands are blocked. `/uphoster` still works.
+Default: `False`.
 
 ---
 
-#### 32. `DISABLE_MULTI`
+#### 32. `DISABLE_BULK`
 
 ```python
-DISABLE_MULTI = False
+DISABLE_BULK = True
 ```
-**If `True`:** Multi-part split operations are blocked.
+**If `True`:** The `-b` flag is blocked — users can't queue many links from one
+message or text file. Default: `False`.
 
 ---
 
-#### 33. `DISABLE_SEED`
+#### 33. `DISABLE_MULTI`
 
 ```python
-DISABLE_SEED = False
+DISABLE_MULTI = True
 ```
-**If `True`:** Torrents won't seed after download finishes.
+**If `True`:** The `-i` flag is blocked — users can't chain multiple replied
+links into one task run. Default: `False`.
 
 ---
 
-#### 34. `DISABLE_FF_MODE`
+#### 34. `DISABLE_SEED`
 
 ```python
-DISABLE_FF_MODE = False
+DISABLE_SEED = True
 ```
-**If `True`:** FFmpeg processing (compress, screenshot, etc.) is blocked.
+**If `True`:** The `-d` flag is blocked, so torrents never seed after
+downloading. Default: `False`.
+
+---
+
+#### 35. `DISABLE_FF_MODE`
+
+```python
+DISABLE_FF_MODE = True
+```
+**If `True`:** The `-ff` flag is blocked — no custom FFmpeg commands.
+Default: `False`.
+
+---
+
+#### 36. `DISABLE_MEGA`
+
+```python
+DISABLE_MEGA = True
+```
+**If `True`:** Mega.nz downloads are blocked. Default: `False`.
+
+---
+
+#### 37. `DISABLE_JD`
+
+```python
+DISABLE_JD = True
+```
+**If `True`:** JDownloader is not started and `/jdmirror` / `/jdleech` refuse to
+run. Saves roughly 256–500MB of RAM.
+
+**Default: `True`** — see the warning above. Turn it on from `/botset`.
+
+---
+
+#### 38. `DISABLE_NZB`
+
+```python
+DISABLE_NZB = True
+```
+**If `True`:** SABnzbd is not started and `/nzbmirror` / `/nzbleech` refuse to
+run. Saves roughly 100–200MB of RAM.
+
+**Default: `True`** — see the warning above. Turn it on from `/botset`.
+
+---
+
+#### 39. `DISABLE_RSS`
+
+```python
+DISABLE_RSS = True
+```
+**If `True`:** RSS feed monitoring stops. Saves CPU. Default: `False`.
+
+---
+
+#### 40. `DISABLE_SEARCH`
+
+```python
+DISABLE_SEARCH = True
+```
+**If `True`:** `/search` is blocked. Default: `False`.
+
+---
+
+#### 41. `DISABLE_YTDLP`
+
+```python
+DISABLE_YTDLP = True
+```
+**If `True`:** `/ytdl` and `/ytdlleech` refuse to run. Default: `False`.
 
 ---
 
@@ -717,18 +829,6 @@ DELETE_LINKS = False
 ```
 
 **If `True`:** Keeps chats clean by removing the link message immediately.
-
----
-
-#### 62. `CLEAN_LOG_MSG`
-
-**What:** Whether the bot automatically deletes old log messages.
-
-```python
-CLEAN_LOG_MSG = False
-```
-
-**If `True`:** Old log messages get cleaned up.
 
 ---
 
@@ -1169,16 +1269,6 @@ UPSTREAM_BRANCH = "master"
 
 ---
 
-#### 92. `UPDATE_PKGS`
-
-**What:** Whether the bot updates Python packages on restart.
-
-```python
-UPDATE_PKGS = True
-```
-
----
-
 ### 1.20b — Telemetry
 
 #### 92b. `ENABLE_TELEMETRY`
@@ -1252,23 +1342,22 @@ MEDIA_GROUP = False
 
 ---
 
-#### 97. `USER_TRANSMISSION`
+#### 97. `TRANSMISSION_MODE`
 
-**What:** Use the user account (from `USER_SESSION_STRING`) for Telegram downloads.
-
-```python
-USER_TRANSMISSION = True
-```
-
----
-
-#### 98. `HYBRID_LEECH`
-
-**What:** Use both bot and user account together for faster uploads.
+**What:** Which account uploads leeched files by default.
 
 ```python
-HYBRID_LEECH = True
+TRANSMISSION_MODE = "both"
 ```
+
+| Value | Meaning | Per-task flag |
+|---|---|---|
+| `"bot"` | The bot account uploads everything. Capped at 2GB per file. | `-bt` |
+| `"user"` | Your user account uploads everything. Needs `USER_SESSION_STRING`. | `-ut` |
+| `"both"` | Hybrid — bot handles files ≤2GB, user handles bigger ones. Default. | `-hl` |
+
+Users can override this for themselves in `/userset` → Leech Settings, or for one
+task with the flag above.
 
 ---
 
@@ -1604,6 +1693,30 @@ INC_TASK_RESUME = False
 
 ---
 
+#### 120b. `ALLDEBRID_API_KEY`
+
+**What:** Your AllDebrid API key. This is what powers the `-ad` flag.
+
+```python
+ALLDEBRID_API_KEY = "your-api-key"
+```
+
+**What `-ad` does:**
+- `/mirror <filehost link> -ad` — unlocks premium hosts (1fichier, rapidgator,
+  mega, ...) and hands a direct link to the normal downloader.
+- `/leech <magnet> -ad` (or reply to a `.torrent` with `-ad`) — uploads the
+  torrent to AllDebrid, waits for it to finish there, then pulls every file from
+  AllDebrid's CDN. aria2 and qBittorrent are bypassed entirely, so dead torrents
+  finish faster on a debrid plan.
+
+**If empty:** Any task using `-ad` fails with
+`ALLDEBRID_API_KEY is not configured`. Tasks without `-ad` are unaffected.
+
+Magnets stop after 3 minutes with no seeders, and 2 hours overall. Failed tasks
+are removed from your AllDebrid history.
+
+---
+
 #### 121. `DEBRID_LINK_API`
 
 **What:** API key for Debrid-Link.com (premium hoster support).
@@ -1746,18 +1859,6 @@ HYPER_CHUNK = 262144   # 256 KB
 
 ---
 
-#### 134. `DOWNLOAD_DIR`
-
-**What:** Where downloaded files are stored on the server. Usually set automatically by Docker.
-
-```python
-DOWNLOAD_DIR = "/usr/src/app/downloads"
-```
-
-**If you change this:** The bot must restart. Existing downloads won't move.
-
----
-
 #### 135. `IMAGES`
 
 **What:** A list of image URLs or file_ids used as background images on bot messages.
@@ -1776,14 +1877,14 @@ DOWNLOAD_DIR = "/usr/src/app/downloads"
 | 6–24 | `DEFAULT_LANG` through `WEB_ACCESS_PASSWORD` | OPTIONAL CONFIG |
 | 25 | `HELPER_TOKENS` | Hyper Tg Downloader |
 | 26–28 | `MEGA_EMAIL` through `DISABLE_MEGA` | MegaAPI |
-| 29–34 | `DISABLE_TORRENTS` through `DISABLE_FF_MODE` | Disable Options |
+| 29–41 | `DISABLE_TORRENTS` through `DISABLE_YTDLP` | Disable Options |
 | 35–36 | `AUTHOR_NAME`, `AUTHOR_URL` | Telegraph |
 | 37–50 | `DIRECT_LIMIT` through `STORAGE_LIMIT` | Task Limits |
 | 51–54 | `USE_IMAGES` through `IMG_SOURCES` | Image Search |
 | 55 | `INSTADL_API` | Insta downloader |
 | 56–57 | `HYDRA_IP`, `HYDRA_API_KEY` | NZB search |
 | 58 | `IMDB_TEMPLATE` | Media Search |
-| 59–62 | `FORCE_SUB_IDS` through `CLEAN_LOG_MSG` | Task Tools |
+| 59–61 | `FORCE_SUB_IDS` through `DELETE_LINKS` | Task Tools |
 | 63–67 | `BOT_MAX_TASKS` through `LOGIN_PASS` | Limiters |
 | 68–70 | `BOT_PM` through `TIMEZONE` | Bot Settings |
 | 71–75 | `GDRIVE_ID` through `INDEX_URL` | GDrive Tools |
@@ -1791,7 +1892,7 @@ DOWNLOAD_DIR = "/usr/src/app/downloads"
 | 80–86 | `RCLONE_PATH` through `RCLONE_SERVE_PASS` | Rclone |
 | 87–88 | `JD_EMAIL`, `JD_PASS` | JDownloader |
 | 89 | `USENET_SERVERS` | Sabnzbd |
-| 90–92 | `UPSTREAM_REPO` through `UPDATE_PKGS` | Update |
+| 90–91 | `UPSTREAM_REPO`, `UPSTREAM_BRANCH` | Update |
 | 93–103 | `LEECH_SPLIT_SIZE` through `THUMBNAIL_LAYOUT` | Leech |
 | 104–106 | `LEECH_DUMP_CHAT` through `MIRROR_LOG_ID` | Log Channels |
 | 107–109 | `TORRENT_TIMEOUT` through `WEB_PINCODE` | qBittorrent/Aria2c |
@@ -1802,26 +1903,31 @@ DOWNLOAD_DIR = "/usr/src/app/downloads"
 
 ---
 
-## Section 2 — On/Off Settings
+## Section 2 — Module Settings
 
-These are the same as the DISABLE_* variables in Section 1 (numbers 29–34, 28). In `/botset`, they appear as easy toggle buttons.
+These are the same `DISABLE_*` variables from Section 1 (numbers 29–41), shown as
+one-tap toggles. This is the **only** reliable way to turn `DISABLE_JD` and
+`DISABLE_NZB` off, because writing `False` in `config.py` is ignored.
 
-| Toggle | What it turns OFF |
+| Toggle | Variable | What it turns OFF |
 |---|---|---|
-| **Torrents** | All torrent downloads |
-| **Leech** | All Telegram uploads |
-| **Bulk** | Zip/unzip operations |
-| **Multi** | Multi-part splits |
-| **Seed** | Torrent seeding after download |
-| **FF Mode** | FFmpeg processing |
-| **Mega** | Mega.nz downloads |
-| **JD** | JDownloader downloads |
-| **NZB** | SABnzbd / Usenet downloads |
-| **RSS** | RSS feed monitoring |
-| **Search** | Torrent search |
-| **YT-DLP** | yt-dlp downloads (YouTube, social media) |
+| **Torrents** | `DISABLE_TORRENTS` | All torrent downloads |
+| **Leech** | `DISABLE_LEECH` | All leech commands |
+| **Mirror** | `DISABLE_MIRROR` | All mirror commands |
+| **Bulk** | `DISABLE_BULK` | The `-b` flag (many links from one message) |
+| **Multi** | `DISABLE_MULTI` | The `-i` flag (multiple replied links) |
+| **Seed** | `DISABLE_SEED` | The `-d` flag (torrent seeding) |
+| **FF Mode** | `DISABLE_FF_MODE` | The `-ff` flag (custom FFmpeg commands) |
+| **Mega** | `DISABLE_MEGA` | Mega.nz downloads |
+| **JD** | `DISABLE_JD` | JDownloader (starts OFF) |
+| **NZB** | `DISABLE_NZB` | SABnzbd / Usenet (starts OFF) |
+| **RSS** | `DISABLE_RSS` | RSS feed monitoring |
+| **Search** | `DISABLE_SEARCH` | `/search` |
+| **YT-DLP** | `DISABLE_YTDLP` | `/ytdl` and `/ytdlleech` |
 
-**How to use:** Tap the toggle. Green checkmark = ON (feature is off). Red = OFF (feature is on). Yes, it's backwards — ON means the DISABLE is active.
+**How to use:** Tap the toggle. Read it as "is this feature disabled?" — so the
+toggle being **on** means the feature is **off**. Toggling JD or NZB also starts
+or stops the matching background service straight away.
 
 ---
 
@@ -1849,8 +1955,8 @@ Upload or delete sensitive files that the bot needs.
 | `list_drives.txt` | Custom drives for `/list` command |
 | `shortener.txt` | URL shortener API keys |
 | `categories.txt` | Upload categories with different drive IDs |
-| `cookies.txt` | Browser cookies for restricted sites |
-| `.netrc` | Login credentials for aria2c |
+| `cookies.txt` | Browser cookies for restricted sites (YouTube etc.) |
+| `terabox.txt` | Terabox session cookies |
 
 ### File formats
 
@@ -1938,7 +2044,7 @@ Two sub-sections:
 
 ## Important Notes
 
-- **Restart needed** for these variables: `BOT_TOKEN`, `DATABASE_URL`, `OWNER_ID`, `TELEGRAM_HASH`, `TELEGRAM_API`, `TG_PROXY`, `AUTHORIZED_CHATS`, `CMD_SUFFIX`, `USER_SESSION_STRING`, `DOWNLOAD_DIR`. The bot will tell you.
+- **Restart needed** for these variables: `BOT_TOKEN`, `DATABASE_URL`, `OWNER_ID`, `TELEGRAM_HASH`, `TELEGRAM_API`, `TG_PROXY`, `AUTHORIZED_CHATS`, `CMD_SUFFIX`, `USER_SESSION_STRING`. The bot will tell you.
 
 - **Use `/botset` in a private chat** with the bot, not in a group.
 

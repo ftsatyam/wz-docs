@@ -7,9 +7,7 @@
 | `/search [query]` | — | Search torrent sites (qBittorrent plugins / API) |
 | `/list [query]` | — | Search files in Google Drive |
 | `/imdb [title/id]` | — | Look up movie/TV on IMDB |
-| `/anilist [anime]` | — | Search anime on AniList |
-| `/nzbsearch [query]` | `/ns` | Search Usenet via NZBHydra |
-| `/mdl [drama]` | — | Search Asian dramas on MyDramaList |
+| `/nzbsearch [query]` | `/ns` | Search Usenet via NZBHydra (needs `HYDRA_IP` + `HYDRA_API_KEY`) |
 
 ## Settings & Management Commands
 
@@ -25,12 +23,12 @@
 | Command | Alias | What it does |
 |---|---|---|
 | `/status` | `/s` | Show active/queued tasks |
-| `/statusall` | — | Show tasks across all instances |
+| `/statusall` | — | Show tasks across all instances (ignores `CMD_SUFFIX`) |
 | `/stats` | `/st` | Show bot/system statistics |
-| `/cancel [gid]` | `/c` | Cancel a task |
+| `/c_[gid]` | — | Cancel one task. Tap the link in `/status` — plain `/cancel` does nothing |
 | `/cancelall [type]` | `/call` | Cancel all tasks (all/mirror/leech/upload) |
 | `/forcestart [gid]` | `/fs` | Force a queued task to start |
-| `/select [gid]` | `/sel` | Open file selection for torrent/NZB |
+| `/sel_[gid]` | — | Open file selection for a torrent/NZB. Tap the link in `/status` |
 | `/mediainfo [file]` | `/mi` | Get MediaInfo of a file |
 | `/help` | `/h` | Show help / command list |
 | `/ping` | — | Check if bot is alive |

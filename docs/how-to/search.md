@@ -37,27 +37,6 @@ Shows rating, plot, cast, year, runtime, genre, and poster.
 
 ---
 
-## Anime search
-
-```
-/anilist Attack on Titan      # search by name
-/anilist 20755                # search by AniList ID
-```
-
-Shows rating, description, episodes, genres, and poster.
-
----
-
-## Drama search
-
-```
-/mdl Crash Landing on You
-```
-
-Searches Korean, Chinese, Japanese, and other Asian dramas on MyDramaList.
-
----
-
 ## NZB / Usenet search
 
 ```

@@ -55,10 +55,16 @@ Use `/botset` → **Private Files** → **Create New File**. Send the file as a 
 
 ### How do I update the bot?
 ```bash
-docker compose down
-docker compose pull
-docker compose up -d
+cd WZML-X
+git pull
+docker compose up -d --build
 ```
+`docker compose pull` does nothing here — the image is built from source, not downloaded.
+
+### Why does `/jdmirror` or `/nzbmirror` say the feature is disabled?
+JDownloader and SABnzbd are **off by default** because they eat a lot of RAM.
+Turn them on with `/botset` → **Module Settings**. Writing `DISABLE_JD = False`
+in `config.py` does **not** work — the config loader ignores `False` values.
 
 ### Can I download from Instagram?
 Yes, if you set `INSTADL_API` in config. See [Download from YouTube & Social Media](/how-to/youtube).
@@ -74,7 +80,7 @@ Use `/search [query]`. Configure `SEARCH_API_LINK` or `SEARCH_PLUGINS` in config
 Use `/botset` — the bot settings panel. Owner/sudo users can change any variable on the fly.
 
 ### Which settings require a restart?
-`BOT_TOKEN`, `DATABASE_URL`, `OWNER_ID`, `TELEGRAM_HASH`, `TELEGRAM_API`, `TG_PROXY`, `AUTHORIZED_CHATS`, `CMD_SUFFIX`, `USER_SESSION_STRING`, and `DOWNLOAD_DIR`. The bot will warn you.
+`BOT_TOKEN`, `DATABASE_URL`, `OWNER_ID`, `TELEGRAM_HASH`, `TELEGRAM_API`, `TG_PROXY`, `AUTHORIZED_CHATS`, `CMD_SUFFIX`, and `USER_SESSION_STRING`. The bot will warn you.
 
 ### Can I have different settings for different users?
 Yes. Users can customize their own experience via `/usetting`. Each user can set their own thumbnail, split size, Rclone config, GDrive token, and more.

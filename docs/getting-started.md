@@ -42,6 +42,8 @@ Before you begin, get these ready:
 | If you want to... | Go here |
 |---|---|
 | Get the bot running in 10 minutes | [Quick Start](/quick-start) |
+| Just see the commands | [Cheat Sheet](/cheatsheet) |
+| Know what "leech" and "mirror" mean | [Word List](/glossary) |
 | Deploy on a VPS with Docker | [Deployment Guide](/deployment/) |
 | Deploy on Heroku | [Heroku Guide](/deployment/heroku) |
 | Learn every setting | [Configuration](/configuration) |

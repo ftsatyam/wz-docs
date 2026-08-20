@@ -11,18 +11,28 @@ export default defineConfig({
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Getting Started', link: '/getting-started' },
+      { text: 'Start Here', link: '/getting-started' },
+      { text: 'Cheat Sheet', link: '/cheatsheet' },
       { text: 'How To', link: '/how-to/leech' },
       { text: 'Reference', link: '/configuration' },
       { text: 'Help', link: '/faq' },
+      {
+        text: 'v3.1.8-x',
+        items: [
+          { text: 'Docs cover branch wzv3', link: 'https://github.com/SilentDemonSD/WZML-X/tree/wzv3' },
+          { text: 'Latest release notes', link: 'https://github.com/SilentDemonSD/WZML-X/releases/latest' },
+          { text: 'All releases', link: 'https://github.com/SilentDemonSD/WZML-X/releases' },
+        ],
+      },
     ],
     sidebar: [
       {
-        text: 'Getting Started',
+        text: 'Start Here',
         items: [
           { text: 'What is WZML-X?', link: '/getting-started' },
-          { text: 'Quick Start', link: '/quick-start' },
-          { text: 'Configuration', link: '/configuration' },
+          { text: 'Quick Start (10 min)', link: '/quick-start' },
+          { text: 'Cheat Sheet', link: '/cheatsheet' },
+          { text: 'Word List', link: '/glossary' },
         ],
       },
       {
@@ -47,6 +57,7 @@ export default defineConfig({
           { text: 'Manage Your Downloads', link: '/how-to/manage' },
           { text: 'Process Files', link: '/how-to/process' },
           { text: 'Automate with RSS', link: '/how-to/rss' },
+          { text: 'Upload Destinations', link: '/upload-destinations' },
         ],
       },
       {

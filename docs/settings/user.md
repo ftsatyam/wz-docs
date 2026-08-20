@@ -15,7 +15,7 @@ This page explains **every button** in `/userset`. Everything you change here on
 | 3 | Leech Settings | How files look on Telegram |
 | 4 | Uphoster Settings | File hosting service API keys |
 | 5 | FF Media Settings | FFmpeg commands and metadata |
-| 6 | Mics Settings | Advanced settings like name swap, excluded extensions |
+| 6 | Misc Settings | Advanced settings like name swap, excluded extensions |
 
 Click any category to see its options. Click **Back** to go back. Click **Close** to close the panel.
 
@@ -159,7 +159,7 @@ Once both are set, the bot uses YOUR Mega account for downloads.
 
 ### 2e. Drive Category Toggle
 
-If the bot owner has enabled `DRIVE_CATEGORY_MODE` globally, you'll see a **Drive Cat: ON/OFF** button. Toggle it to enable/disable your personal drive categories.
+If the bot owner has enabled `DRIVE_CATEGORY_MODE` globally, you'll see a **Drive Cat: ON/OFF** button (stored as `DRIVE_CAT` for your account). Toggle it to enable/disable your personal drive categories.
 
 When enabled, you can use different Google Drive folders for different content types. Set up your categories under **GDrive Tools → User Drive Categories** using the format:
 ```
@@ -380,9 +380,9 @@ language={sublang}|title=Subtitles - {sublang}
 
 ---
 
-## 6. Mics / Advanced Settings
+## 6. Misc / Advanced Settings
 
-Click **Mics Settings** in `/userset`. This has 5 settings:
+Click **Misc Settings** in `/userset`. This has 5 settings:
 
 ### 6a. Excluded Extensions
 
@@ -453,7 +453,7 @@ Replaces "1080p" with "HD" and "x265" with "HEVC".
 | Leech | Thumbnail, split size, destination, prefix, suffix, caption, doc/media, equal splits, media group, leech by, hybrid, thumbnail layout |
 | Uphoster | Gofile, BuzzHeavier, PixelDrain, DevUploads, VikingFile keys |
 | FF Media | FFmpeg cmds, global metadata, audio/video/subtitle metadata |
-| Mics | Excluded extensions, name swap, yt-dlp options, upload paths, cookie file |
+| Misc | Excluded extensions, name swap, yt-dlp options, upload paths, cookie file |
 
 ---
 
