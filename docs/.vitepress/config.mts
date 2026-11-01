@@ -101,7 +101,7 @@ export default defineConfig({
       text: 'Edit this page on GitHub',
     },
     footer: {
-      message: 'Made with ❤️ by <a href="https://github.com/rjriajul">rjriajul</a>',
+      message: 'Made with ❤️ by <a href="https://github.com/Imkrishana">Imkrishana</a>',
       copyright: 'Docs for <a href="https://github.com/Imkrishana/HKML-X">HKML-X</a>',
     },
     search: {
