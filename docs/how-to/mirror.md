@@ -21,8 +21,6 @@ The bot downloads the file and uploads it to your default cloud destination.
 | A direct download link | `/mirror` (or `/m`) | HTTP links, normal downloads |
 | A torrent magnet | `/qbmirror` (or `/qm`) | Torrents (better handling) |
 | A YouTube link | `/ytdl` (or `/y`) | YouTube, social media, streams |
-| A premium hoster link | `/jdmirror` (or `/jm`) | Rapidgator, etc. via JDownloader |
-| An NZB link | `/nzbmirror` (or `/nm`) | Usenet downloads |
 | A Google Drive link | `/clone` (or `/cl`) | Copy between Drives (no download) |
 
 ---

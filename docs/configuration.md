@@ -100,8 +100,6 @@ After editing, restart: `docker compose restart`
 | `GD_DL_LIMIT` | Google Drive downloads |
 | `RC_DL_LIMIT` | Rclone downloads |
 | `CLONE_LIMIT` | Google Drive clone operations |
-| `JD_LIMIT` | JDownloader downloads |
-| `NZB_LIMIT` | Usenet (NZB) downloads |
 | `YTDLP_LIMIT` | yt-dlp downloads |
 | `PLAYLIST_LIMIT` | Max items from a playlist |
 | `LEECH_LIMIT` | Leech (Telegram upload) size |
@@ -166,24 +164,9 @@ Set `True` to **disable** a feature:
 | `DISABLE_SEED` | The `-d` flag — seeding after torrent download | `False` |
 | `DISABLE_FF_MODE` | The `-ff` flag — FFmpeg processing | `False` |
 | `DISABLE_MEGA` | Mega.nz downloads | `False` |
-| `DISABLE_JD` | JDownloader downloads. Saves ~256–500MB RAM | **`True`** |
-| `DISABLE_NZB` | SABnzbd / Usenet downloads. Saves ~100–200MB RAM | **`True`** |
 | `DISABLE_RSS` | RSS feed monitoring | `False` |
 | `DISABLE_SEARCH` | Torrent search | `False` |
 | `DISABLE_YTDLP` | yt-dlp downloads (YouTube, social media) | `False` |
-
-::: warning JDownloader and Usenet are OFF out of the box
-`DISABLE_JD` and `DISABLE_NZB` start as `True`, and **writing
-`DISABLE_JD = False` in `config.py` will not turn them on** — the config loader
-skips any value that is empty, `0`, or `False`.
-
-To actually enable them, use one of:
-- `/botset` → **Module Settings** → toggle JD / NZB, or
-- an environment variable: `DISABLE_JD=false`
-
-Same trap applies to every `False` and `0` setting: writing the falsy value in
-`config.py` is the same as leaving the line out.
-:::
 
 ---
 
@@ -198,21 +181,6 @@ Same trap applies to every `False` and `0` setting: writing the falsy value in
 | `THROTTLE_SERVICES` | Pause services during heavy operations: `"auto"` or `"off"` | `"auto"` |
 
 > `BASE_URL` and `WEB_PINCODE` are documented under [Web UI](#web-ui) above.
-
-### JDownloader
-
-| Variable | What it does |
-|---|---|
-| `JD_EMAIL` | JDownloader account email |
-| `JD_PASS` | JDownloader account password |
-
-### Sabnzbd (Usenet)
-
-| Variable | What it does |
-|---|---|
-| `USENET_SERVERS` | List of usenet server configs (dicts) |
-| `HYDRA_IP` | NZBHydra API IP address for Usenet search |
-| `HYDRA_API_KEY` | NZBHydra API key for Usenet search |
 
 ### Mega
 

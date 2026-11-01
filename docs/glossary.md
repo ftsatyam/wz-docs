@@ -63,12 +63,6 @@ A small, fast downloader. Handles direct links and simple torrents. Used by `/mi
 **qBittorrent** (qbit)
 A full torrent program. Better for torrents — lets you pick files and control seeding. Used by `/qbmirror` and `/qbleech`.
 
-**JDownloader** (JD)
-Handles premium file hosts (Rapidgator, Uploaded...). Uses a lot of RAM, so it's **off by default**.
-
-**SABnzbd** / **NZB** / **Usenet**
-A separate paid file network, not torrents. Also **off by default**.
-
 **yt-dlp**
 The tool that downloads from YouTube and ~1000 other video sites. Used by `/ytdl` and `/ytdlleech`.
 

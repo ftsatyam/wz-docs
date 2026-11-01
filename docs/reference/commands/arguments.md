@@ -65,7 +65,7 @@ Split into smaller parts.
 ```
 
 ### `-s` — Select files
-Open file selection for torrents, NZBs, or JDownloader.
+Open file selection for torrent downloads.
 ```
 /qbmirror link -s
 ```

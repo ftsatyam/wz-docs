@@ -6,9 +6,9 @@ This page explains **every single setting** in `/botset`. Each one is numbered s
 
 ---
 
-## The 7 Buttons in `/botset`
+## The 5 Buttons in `/botset`
 
-When you send `/botset` to the bot, you see 7 buttons:
+When you send `/botset` to the bot, you see 5 buttons:
 
 | Button | What you can do there |
 |---|---|
@@ -17,8 +17,6 @@ When you send `/botset` to the bot, you see 7 buttons:
 | **Private Files** | Upload or delete sensitive files (rclone.conf, token.pickle, etc.) |
 | **Qbit Settings** | Change qBittorrent options |
 | **Aria2c Settings** | Change Aria2 download options |
-| **Sabnzbd Settings** | Change Usenet/SABnzbd options |
-| **JDownloader Sync** | Save JDownloader's config to the bot |
 
 ---
 
@@ -484,16 +482,6 @@ DISABLE_MEGA = False
 
 These can also be toggled in **Module Settings** (Section 2 below). Here they are as config.py variables.
 
-::: warning Writing `False` here does nothing
-The config loader skips any value that is empty, `0`, or `False`. So a line like
-`DISABLE_JD = False` is treated exactly like leaving the line out — the built-in
-default wins.
-
-That matters most for `DISABLE_JD` and `DISABLE_NZB`, whose built-in default is
-**`True`**. To actually turn JDownloader or Usenet **on**, use `/botset` →
-**Module Settings**, or set an environment variable (`DISABLE_JD=false`).
-:::
-
 #### 29. `DISABLE_TORRENTS`
 
 ```python
@@ -572,30 +560,6 @@ DISABLE_MEGA = True
 
 ---
 
-#### 37. `DISABLE_JD`
-
-```python
-DISABLE_JD = True
-```
-**If `True`:** JDownloader is not started and `/jdmirror` / `/jdleech` refuse to
-run. Saves roughly 256–500MB of RAM.
-
-**Default: `True`** — see the warning above. Turn it on from `/botset`.
-
----
-
-#### 38. `DISABLE_NZB`
-
-```python
-DISABLE_NZB = True
-```
-**If `True`:** SABnzbd is not started and `/nzbmirror` / `/nzbleech` refuse to
-run. Saves roughly 100–200MB of RAM.
-
-**Default: `True`** — see the warning above. Turn it on from `/botset`.
-
----
-
 #### 39. `DISABLE_RSS`
 
 ```python
@@ -657,8 +621,6 @@ Most limits are in **GB**. Set to `0` for **no limit**.
 | 40 | `GD_DL_LIMIT` | Google Drive downloads |
 | 41 | `RC_DL_LIMIT` | Rclone downloads |
 | 42 | `CLONE_LIMIT` | Google Drive clone (copy) |
-| 43 | `JD_LIMIT` | JDownloader downloads |
-| 44 | `NZB_LIMIT` | Usenet downloads |
 | 45 | `YTDLP_LIMIT` | yt-dlp (YouTube, etc.) downloads |
 | 46 | `PLAYLIST_LIMIT` | Max items from a playlist (count, not GB) |
 | 47 | `LEECH_LIMIT` | Leech (Telegram upload) size |
@@ -738,30 +700,6 @@ INSTADL_API = "your-api-key"
 ```
 
 **If empty:** Instagram downloads won't work.
-
----
-
-### 1.10 — NZB Search (Usenet)
-
-#### 56. `HYDRA_IP`
-
-**What:** IP address of your NZB Hydra server for searching Usenet.
-
-```python
-HYDRA_IP = "192.168.1.100"
-```
-
----
-
-#### 57. `HYDRA_API_KEY`
-
-**What:** API key for your NZB Hydra server.
-
-```python
-HYDRA_API_KEY = "your-api-key"
-```
-
-**If both empty:** NZB search won't work.
 
 ---
 
@@ -1165,83 +1103,6 @@ RCLONE_SERVE_PASS = "mypassword"
 ```
 
 **If both empty:** No login required for Rclone serve.
-
----
-
-### 1.18 — JDownloader
-
-#### 87. `JD_EMAIL`
-
-**What:** Your JDownloader account email. JDownloader unlocks premium download links.
-
-```python
-JD_EMAIL = "youremail@example.com"
-```
-
----
-
-#### 88. `JD_PASS`
-
-**What:** Your JDownloader account password.
-
-```python
-JD_PASS = "yourpassword"
-```
-
-**If both empty:** JDownloader won't start.
-
----
-
-### 1.19 — Sabnzbd (Usenet)
-
-#### 89. `USENET_SERVERS`
-
-**What:** A list of Usenet servers for downloading NZB files.
-
-**Each server needs these fields:**
-| Field | What it is |
-|---|---|
-| `name` | A label (you choose) |
-| `host` | Server address from your Usenet provider |
-| `port` | Port (usually 563 for SSL) |
-| `timeout` | Connection timeout in seconds |
-| `username` | Your provider username |
-| `password` | Your provider password |
-| `connections` | How many connections (check provider limit) |
-| `ssl` | 0=no SSL, 1=SSL, 2=SSL required |
-| `ssl_verify` | 0=don't verify, 1=verify, 2=verify required |
-| `ssl_ciphers` | Custom SSL ciphers (leave empty for default) |
-| `enable` | 1=enabled, 0=disabled |
-| `required` | 0=optional, 1=required for download |
-| `optional` | 0=not optional, 1=optional |
-| `retention` | Days of articles this server keeps (0=unlimited) |
-| `send_group` | 0=send individually, 1=send as group |
-| `priority` | Server priority (0=normal, higher=more preferred) |
-
-```python
-USENET_SERVERS = [
-    {
-        "name": "main",
-        "host": "news.yourprovider.com",
-        "port": 563,
-        "timeout": 60,
-        "username": "your-username",
-        "password": "your-password",
-        "connections": 8,
-        "ssl": 1,
-        "ssl_verify": 2,
-        "ssl_ciphers": "",
-        "enable": 1,
-        "required": 0,
-        "optional": 0,
-        "retention": 0,
-        "send_group": 0,
-        "priority": 0,
-    }
-]
-```
-
-**If empty (no host):** Usenet downloads won't work.
 
 ---
 
@@ -1882,7 +1743,6 @@ HYPER_CHUNK = 262144   # 256 KB
 | 37–50 | `DIRECT_LIMIT` through `STORAGE_LIMIT` | Task Limits |
 | 51–54 | `USE_IMAGES` through `IMG_SOURCES` | Image Search |
 | 55 | `INSTADL_API` | Insta downloader |
-| 56–57 | `HYDRA_IP`, `HYDRA_API_KEY` | NZB search |
 | 58 | `IMDB_TEMPLATE` | Media Search |
 | 59–61 | `FORCE_SUB_IDS` through `DELETE_LINKS` | Task Tools |
 | 63–67 | `BOT_MAX_TASKS` through `LOGIN_PASS` | Limiters |
@@ -1890,8 +1750,6 @@ HYPER_CHUNK = 262144   # 256 KB
 | 71–75 | `GDRIVE_ID` through `INDEX_URL` | GDrive Tools |
 | 76–79 | `YT_DESP` through `YT_PRIVACY_STATUS` | YT Tools |
 | 80–86 | `RCLONE_PATH` through `RCLONE_SERVE_PASS` | Rclone |
-| 87–88 | `JD_EMAIL`, `JD_PASS` | JDownloader |
-| 89 | `USENET_SERVERS` | Sabnzbd |
 | 90–91 | `UPSTREAM_REPO`, `UPSTREAM_BRANCH` | Update |
 | 93–103 | `LEECH_SPLIT_SIZE` through `THUMBNAIL_LAYOUT` | Leech |
 | 104–106 | `LEECH_DUMP_CHAT` through `MIRROR_LOG_ID` | Log Channels |
@@ -1905,9 +1763,8 @@ HYPER_CHUNK = 262144   # 256 KB
 
 ## Section 2 — Module Settings
 
-These are the same `DISABLE_*` variables from Section 1 (numbers 29–41), shown as
-one-tap toggles. This is the **only** reliable way to turn `DISABLE_JD` and
-`DISABLE_NZB` off, because writing `False` in `config.py` is ignored.
+These are the same `DISABLE_*` variables from Section 1 (numbers 29–39), shown as
+one-tap toggles.
 
 | Toggle | Variable | What it turns OFF |
 |---|---|---|
@@ -1919,15 +1776,12 @@ one-tap toggles. This is the **only** reliable way to turn `DISABLE_JD` and
 | **Seed** | `DISABLE_SEED` | The `-d` flag (torrent seeding) |
 | **FF Mode** | `DISABLE_FF_MODE` | The `-ff` flag (custom FFmpeg commands) |
 | **Mega** | `DISABLE_MEGA` | Mega.nz downloads |
-| **JD** | `DISABLE_JD` | JDownloader (starts OFF) |
-| **NZB** | `DISABLE_NZB` | SABnzbd / Usenet (starts OFF) |
 | **RSS** | `DISABLE_RSS` | RSS feed monitoring |
 | **Search** | `DISABLE_SEARCH` | `/search` |
 | **YT-DLP** | `DISABLE_YTDLP` | `/ytdl` and `/ytdlleech` |
 
 **How to use:** Tap the toggle. Read it as "is this feature disabled?" — so the
-toggle being **on** means the feature is **off**. Toggling JD or NZB also starts
-or stops the matching background service straight away.
+toggle being **on** means the feature is **off**.
 
 ---
 
@@ -2009,36 +1863,6 @@ Aria2 options. Click any to edit.
 | `seed-time` | Stop seeding after N minutes |
 
 **Add new key button:** Add custom Aria2 options not already listed.
-
----
-
-## Section 6 — Sabnzbd Settings
-
-Two sub-sections:
-
-**Misc Options:** General Sabnzbd settings (history retention, bandwidth limit, etc.).
-
-**Servers:** Manage your Usenet server connections. Click a server to edit, or **Add New**.
-
-| Server field | What it is | Required |
-|---|---|---|
-| `name` | Label you choose | Yes |
-| `host` | Server address | Yes |
-| `port` | Port (563 for SSL) | Yes |
-| `username` | Your provider username | Yes |
-| `password` | Your provider password | Yes |
-| `connections` | Max connections | No (default 8) |
-| `ssl` | 0=off, 1=on, 2=required | No |
-
----
-
-## Section 7 — JDownloader Sync
-
-**What it does:** Saves JDownloader's current config to the bot's database.
-
-**When to use:** After you change JDownloader settings, sync to update the bot.
-
-**Requirements:** `JD_EMAIL` and `JD_PASS` must be set.
 
 ---
 

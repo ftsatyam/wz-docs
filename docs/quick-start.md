@@ -111,16 +111,8 @@ The bot will send you a file called `100MB.bin`. Tap it to download.
 
 ---
 
-## Step 8: Two things that surprise everyone
+## Step 8: `/mirror` needs a cloud drive first
 
-**1. JDownloader and Usenet are turned OFF.**
-They use a lot of RAM, so they start disabled. `/jdmirror` and `/nzbmirror` will
-refuse to run. To turn them on: send `/botset` → **Module Settings** → tap JD or NZB.
-
-Editing `config.py` will *not* work for these — the bot ignores `False` values in
-that file. Same for every other `False`/`0`/empty setting.
-
-**2. `/mirror` needs a cloud drive first.**
 `/leech` works out of the box because Telegram is already set up. `/mirror` has
 nowhere to put the file until you connect Google Drive or Rclone.
 See [Upload Destinations](/upload-destinations).

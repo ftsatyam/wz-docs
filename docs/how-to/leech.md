@@ -19,8 +19,6 @@ The bot downloads the file and sends it right here in this chat.
 | A direct download link | `/leech` | `/l` | `/leech https://example.com/file.zip` |
 | A YouTube video | `/ytdlleech` | `/yl` | `/ytdlleech https://youtube.com/watch?v=...` |
 | A torrent magnet | `/qbleech` | `/ql` | `/qbleech magnet:?xt=urn:btih:...` |
-| A premium hoster link | `/jdleech` | `/jl` | `/jdleech https://rapidgator.net/file/...` |
-| An NZB / Usenet link | `/nzbleech` | `/nl` | `/nzbleech https://example.com/file.nzb` |
 
 ---
 

@@ -61,11 +61,6 @@ docker compose up -d --build
 ```
 `docker compose pull` does nothing here — the image is built from source, not downloaded.
 
-### Why does `/jdmirror` or `/nzbmirror` say the feature is disabled?
-JDownloader and SABnzbd are **off by default** because they eat a lot of RAM.
-Turn them on with `/botset` → **Module Settings**. Writing `DISABLE_JD = False`
-in `config.py` does **not** work — the config loader ignores `False` values.
-
 ### Can I download from Instagram?
 Yes, if you set `INSTADL_API` in config. See [Download from YouTube & Social Media](/how-to/youtube).
 

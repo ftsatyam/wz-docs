@@ -16,7 +16,6 @@ One page. Find what you want to do, copy the command, change the link.
 | A torrent magnet | `/qbleech magnet:?xt=...` |
 | A `.torrent` file | Send the file, then reply to it with `/qbleech` |
 | A link from Rapidgator/1fichier/etc. | `/leech LINK -ad` |
-| An NZB (Usenet) | `/nzbleech LINK` |
 
 ## "I want the file in my Google Drive / cloud"
 
@@ -136,7 +135,6 @@ Every long command has a short one.
 | Nothing at all | `docker compose logs app --tail 30` on your server |
 | "not authorized" | Owner runs `/authorize` in that chat |
 | "The Mirror command is currently disabled" | Owner turns it back on in `/botset` → Module Settings |
-| "JDownloader is currently disabled" | Normal — JD is off by default. `/botset` → Module Settings |
 | Stuck at 0% | Dead torrent, or no seeders. Try another one. |
 
 [Full troubleshooting →](/troubleshooting)

@@ -40,11 +40,10 @@ WEB_PINCODE = False
 
 ## Proxy endpoints
 
-The web UI also proxies to qBittorrent and SABnzbd web interfaces:
+The web UI also proxies to the qBittorrent web interface:
 
 | Endpoint | What it gives access to |
 |---|---|
 | `/qbit/` | qBittorrent web UI |
-| `/nzb/` | SABnzbd web UI |
 
 Passwords are derived from `WEB_ACCESS_PASSWORD` and shown in the startup logs.

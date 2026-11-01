@@ -36,11 +36,3 @@ Finds files and folders in your configured Google Drive(s). Shows direct links t
 Shows rating, plot, cast, year, runtime, genre, and poster.
 
 ---
-
-## NZB / Usenet search
-
-```
-/nzbsearch linux iso          # or /ns linux iso
-```
-
-Searches Usenet via NZBHydra. Requires `HYDRA_IP` and `HYDRA_API_KEY` configured.

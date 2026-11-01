@@ -7,7 +7,6 @@
 | `/search [query]` | — | Search torrent sites (qBittorrent plugins / API) |
 | `/list [query]` | — | Search files in Google Drive |
 | `/imdb [title/id]` | — | Look up movie/TV on IMDB |
-| `/nzbsearch [query]` | `/ns` | Search Usenet via NZBHydra (needs `HYDRA_IP` + `HYDRA_API_KEY`) |
 
 ## Settings & Management Commands
 
@@ -28,7 +27,7 @@
 | `/c_[gid]` | — | Cancel one task. Tap the link in `/status` — plain `/cancel` does nothing |
 | `/cancelall [type]` | `/call` | Cancel all tasks (all/mirror/leech/upload) |
 | `/forcestart [gid]` | `/fs` | Force a queued task to start |
-| `/sel_[gid]` | — | Open file selection for a torrent/NZB. Tap the link in `/status` |
+| `/sel_[gid]` | — | Open file selection for a torrent. Tap the link in `/status` |
 | `/mediainfo [file]` | `/mi` | Get MediaInfo of a file |
 | `/help` | `/h` | Show help / command list |
 | `/ping` | — | Check if bot is alive |

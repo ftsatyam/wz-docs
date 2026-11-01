@@ -74,7 +74,7 @@ This works on tasks that are **queued**, not ones already downloading.
 
 ## Select files from a torrent
 
-Open the file selection menu for a torrent, NZB, or JDownloader task:
+Open the file selection menu for a torrent task:
 
 ```
 /sel_gid123abc
