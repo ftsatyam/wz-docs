@@ -7,7 +7,7 @@ Upload videos directly to your YouTube channel from the bot.
 Configure YouTube upload settings in config.py:
 
 ```python
-YT_DESP = "Uploaded with WZML-X bot"       # Video description
+YT_DESP = "Uploaded with HKML-X bot"       # Video description
 YT_TAGS = ["telegram", "bot", "youtube"]    # Search tags
 YT_CATEGORY_ID = 22                         # "People & Blogs"
 YT_PRIVACY_STATUS = "unlisted"              # public, unlisted, or private

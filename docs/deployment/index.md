@@ -1,6 +1,6 @@
 # Deployment
 
-There are two main ways to run WZML-X. Pick the one that suits you.
+There are two main ways to run HKML-X. Pick the one that suits you.
 
 - **[VPS / Dedicated Server](./vps)** (recommended) — full control, no restrictions
 - **[Heroku](./heroku)** (via WZ-Deploy) — easier setup, some limitations

@@ -2,12 +2,12 @@
 layout: home
 
 hero:
-  name: WZML-X Docs
+  name: HKML-X Docs
   text: Send it a link. Get the file.
   tagline: A Telegram bot that downloads anything and puts it wherever you want — your chat, your Google Drive, or a public link.
   image:
     src: /logo.svg
-    alt: WZML-X
+    alt: HKML-X
   actions:
     - theme: brand
       text: Get it running in 10 min

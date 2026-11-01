@@ -1,6 +1,6 @@
 # wz-docs
 
-Documentation for [WZML-X](https://github.com/SilentDemonSD/WZML-X) — a Telegram mirror and leech bot.
+Documentation for [HKML-X](https://github.com/Imkrishana/HKML-X) — a Telegram mirror and leech bot.
 
 Built with [VitePress](https://vitepress.dev/).
 
@@ -21,4 +21,4 @@ Preview with `npm run docs:preview`.
 
 ## License
 
-Documentation content is provided for reference under the same license as WZML-X.
+Documentation content is provided for reference under the same license as HKML-X.

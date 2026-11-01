@@ -9,7 +9,7 @@ Common issues and how to fix them.
 ### Check the logs
 
 ```bash
-cd WZML-X
+cd HKML-X
 docker compose logs --tail 50
 ```
 
@@ -280,7 +280,7 @@ Most file operations happen inside the Docker container. Upload files via `/bots
 If you must copy manually:
 
 ```bash
-docker cp token.pickle WZML-X-app-1:/usr/src/app/token.pickle
+docker cp token.pickle HKML-X-app-1:/usr/src/app/token.pickle
 ```
 
 ---
@@ -307,7 +307,7 @@ docker compose down && docker compose up -d
 
 ## Still stuck?
 
-Join the support group: [https://t.me/WZML_Support](https://t.me/WZML_Support)
+Join the support group: [https://t.me/HKML_X](https://t.me/HKML_X)
 
 Provide:
 1. The error message

@@ -151,9 +151,9 @@
 
   <!-- === TEXT === -->
   <g filter="url(#textGlow)">
-    <!-- WZML-X main title -->
+    <!-- HKML-X main title -->
     <text x="200" y="265" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="42" font-weight="700" fill="url(#textGrad)" letter-spacing="4">
-      WZML-X
+      HKML-X
     </text>
   </g>
 

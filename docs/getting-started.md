@@ -1,7 +1,7 @@
 
-# What is WZML-X?
+# What is HKML-X?
 
-Think of WZML-X as your **personal file-butler bot on Telegram**. You send it a link, and it grabs the file and puts it wherever you want — Google Drive, your cloud storage, or right back to you on Telegram.
+Think of HKML-X as your **personal file-butler bot on Telegram**. You send it a link, and it grabs the file and puts it wherever you want — Google Drive, your cloud storage, or right back to you on Telegram.
 
 ## What can it do?
 

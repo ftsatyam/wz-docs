@@ -630,7 +630,7 @@ DISABLE_YTDLP = True
 **What:** The author name shown on Telegraph pages (the web pages the bot creates for search results).
 
 ```python
-AUTHOR_NAME = "WZML-X"
+AUTHOR_NAME = "HKML-X"
 ```
 
 ---
@@ -640,7 +640,7 @@ AUTHOR_NAME = "WZML-X"
 **What:** A clickable link on Telegraph pages. Put your Telegram channel URL here so people can click to join.
 
 ```python
-AUTHOR_URL = "https://t.me/WZML_X"
+AUTHOR_URL = "https://t.me/HKML_X"
 ```
 
 ---
@@ -1036,7 +1036,7 @@ DRIVE_CATEGORY_SA = ""
 **What:** Description text for YouTube uploads.
 
 ```python
-YT_DESP = "Uploaded to YouTube by WZML-X bot"
+YT_DESP = "Uploaded to YouTube by HKML-X bot"
 ```
 
 ---
@@ -1417,7 +1417,7 @@ LEECH_FONT = "b"
 **What:** Custom caption text on every leeched file. Supports HTML.
 
 ```python
-LEECH_CAPTION = "Downloaded by <b>WZML-X Bot</b>"
+LEECH_CAPTION = "Downloaded by <b>HKML-X Bot</b>"
 ```
 
 **If empty:** No caption.

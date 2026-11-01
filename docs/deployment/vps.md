@@ -15,8 +15,8 @@ Verify: `docker --version`
 ### Step 2: Clone and configure
 
 ```bash
-git clone -b wzv3 https://github.com/SilentDemonSD/WZML-X.git
-cd WZML-X
+git clone -b wzv3 https://github.com/Imkrishana/HKML-X.git
+cd HKML-X
 cp config_sample.py config.py
 nano config.py
 ```
@@ -69,7 +69,7 @@ The compose file **builds** the image from source, so `docker compose pull` does
 nothing. Pull the code, then rebuild:
 
 ```bash
-cd WZML-X
+cd HKML-X
 git pull
 docker compose up -d --build
 ```

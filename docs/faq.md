@@ -55,7 +55,7 @@ Use `/botset` → **Private Files** → **Create New File**. Send the file as a 
 
 ### How do I update the bot?
 ```bash
-cd WZML-X
+cd HKML-X
 git pull
 docker compose up -d --build
 ```

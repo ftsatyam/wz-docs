@@ -1,7 +1,7 @@
 {
   "name": "wz-docs",
   "version": "1.0.0",
-  "description": "Documentation for WZML-X — a Telegram mirror and leech bot",
+  "description": "Documentation for HKML-X — a Telegram mirror and leech bot",
   "devDependencies": {
     "vitepress": "^2.0.0-alpha.17",
     "wrangler": "^4.101.0"
@@ -18,7 +18,7 @@
     "url": "git+https://github.com/rjriajul/wz-docs.git"
   },
   "keywords": [
-    "wzml-x",
+    "hkml-x",
     "telegram",
     "mirror-bot",
     "leech-bot",

@@ -2,7 +2,7 @@
 
 ## CapRover
 
-WZML-X includes a `captain-definition` file for one-click deployment on CapRover.
+HKML-X includes a `captain-definition` file for one-click deployment on CapRover.
 
 1. Install CapRover on your server
 2. Create a new app in the CapRover dashboard
@@ -16,8 +16,8 @@ WZML-X includes a `captain-definition` file for one-click deployment on CapRover
 If you prefer to run the bot without Docker Compose:
 
 ```bash
-docker build -t wzmlx .
-docker run -p 8080:8080 wzmlx
+docker build -t hkml-x .
+docker run -p 8080:8080 hkml-x
 ```
 
 Note: The tunnel and some services won't auto-start. You'll need to handle networking yourself.

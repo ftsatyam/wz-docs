@@ -39,8 +39,8 @@ curl -fsSL https://get.docker.com | sh
 ## Step 4: Download and configure the bot
 
 ```bash
-git clone -b wzv3 https://github.com/SilentDemonSD/WZML-X.git
-cd WZML-X
+git clone -b wzv3 https://github.com/Imkrishana/HKML-X.git
+cd HKML-X
 cp config_sample.py config.py
 nano config.py
 ```

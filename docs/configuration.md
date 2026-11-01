@@ -7,7 +7,7 @@ The bot is configured through `config.py` (a Python file, not `.env`). This page
 ## Where's the config file?
 
 ```bash
-# In your WZML-X folder:
+# In your HKML-X folder:
 cp config_sample.py config.py   # Create it
 nano config.py                   # Edit it
 ```
@@ -140,8 +140,8 @@ After editing, restart: `docker compose restart`
 |---|---|---|
 | `TIMEZONE` | Timezone for timestamps | `"Asia/Kolkata"` |
 | `DEFAULT_LANG` | Bot language code | `"en"` |
-| `AUTHOR_NAME` | Author name shown on Telegraph pages | `"WZML-X"` |
-| `AUTHOR_URL` | Author link | `"https://t.me/WZML_X"` |
+| `AUTHOR_NAME` | Author name shown on Telegraph pages | `"HKML-X"` |
+| `AUTHOR_URL` | Author link | `"https://t.me/HKML_X"` |
 | `USE_IMAGES` | Enable random photo backgrounds on messages | `False` |
 | `IMG_SEARCH` | Comma-separated keywords to auto-fetch wallpapers | `""` |
 | `IMG_PAGE` | Number of pages to search for images | `1` |
@@ -325,7 +325,7 @@ Same trap applies to every `False` and `0` setting: writing the falsy value in
 
 | Variable | What it does | Default |
 |---|---|---|
-| `YT_DESP` | Description for YouTube uploads | `"Uploaded with WZML-X bot"` |
+| `YT_DESP` | Description for YouTube uploads | `"Uploaded with HKML-X bot"` |
 | `YT_TAGS` | Tags for YouTube uploads | `["telegram", "bot", "youtube"]` |
 | `YT_CATEGORY_ID` | YouTube category ID | `22` |
 | `YT_PRIVACY_STATUS` | Privacy: `"public"`, `"unlisted"`, or `"private"` | `"unlisted"` |

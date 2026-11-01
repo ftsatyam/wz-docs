@@ -1,6 +1,6 @@
 # Upload Destinations
 
-WZML-X can upload files to many different places. This page explains all your options.
+HKML-X can upload files to many different places. This page explains all your options.
 
 ---
 

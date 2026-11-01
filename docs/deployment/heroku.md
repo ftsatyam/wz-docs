@@ -1,6 +1,6 @@
 # Heroku (via WZ-Deploy)
 
-[WZ-Deploy](https://github.com/SilentDemonSD/WZ-Deploy) is a dedicated deployment repo for running WZML-X on Heroku.
+[WZ-Deploy](https://github.com/SilentDemonSD/WZ-Deploy) is a dedicated deployment repo for running HKML-X on Heroku.
 
 ::: info Prerequisites
 Make sure you have the [prerequisites](./) ready before starting (BotFather token, api_id, api_hash, user ID, MongoDB URL).
@@ -34,7 +34,7 @@ The notebook has 5 cells. Run them one at a time from top to bottom:
 |---|---|
 | **Heroku Login** | Enter your Heroku email + API key |
 | **Create Heroku Multi App** | Pick a region (`eu` or `us`) and optionally name your app (leave blank for a random name). Enter team name only if deploying to a Heroku team. |
-| **WZML-X Repo Config Setup** | This is the main config cell. Enter your **App Name** (from step above), then fill in all 8 variables: `BOT_TOKEN`, `TELEGRAM_API`, `TELEGRAM_HASH`, `OWNER_ID`, `DATABASE_URL`, `BASE_URL`, `UPSTREAM_REPO`, `UPSTREAM_BRANCH`. You can also upload a `config.py` file or use a Gist URL instead. |
+| **HKML-X Repo Config Setup** | This is the main config cell. Enter your **App Name** (from step above), then fill in all 8 variables: `BOT_TOKEN`, `TELEGRAM_API`, `TELEGRAM_HASH`, `OWNER_ID`, `DATABASE_URL`, `BASE_URL`, `UPSTREAM_REPO`, `UPSTREAM_BRANCH`. You can also upload a `config.py` file or use a Gist URL instead. |
 | **Deploy Heroku Multi App** | Enter your app name again — this pushes and deploys |
 | **Show Heroku App Logs** | (Optional) Enter your app name to view live logs |
 
@@ -77,11 +77,11 @@ In your forked repo, go to **Settings** → **Actions** → **General** and make
 | `DATABASE_URL` | Your MongoDB connection string |
 | `TELEGRAM_API` | From my.telegram.org |
 | `TELEGRAM_HASH` | From my.telegram.org |
-| `HEROKU_APP_NAME` | A unique name for your app (e.g., `my-wzmlx-bot`) |
+| `HEROKU_APP_NAME` | A unique name for your app (e.g., `my-hkml-x-bot`) |
 | `HEROKU_EMAIL` | Your Heroku account email |
 | `HEROKU_API_KEY` | The API key from step 3 |
 | `HEROKU_TEAM_NAME` | (Optional) Only if deploying under a Heroku team |
-| `UPSTREAM_REPO` | `https://github.com/SilentDemonSD/WZML-X` (or your fork) |
+| `UPSTREAM_REPO` | `https://github.com/Imkrishana/HKML-X` (or your fork) |
 
 ### Step 5: Wait
 
@@ -137,7 +137,7 @@ BOT_TOKEN = ""
 TELEGRAM_API = 0
 TELEGRAM_HASH = ""
 OWNER_ID = 0
-UPSTREAM_REPO = "https://github.com/SilentDemonSD/WZML-X"
+UPSTREAM_REPO = "https://github.com/Imkrishana/HKML-X"
 UPSTREAM_BRANCH = "wzv3"
 DATABASE_URL = ""
 BASE_URL = ""
